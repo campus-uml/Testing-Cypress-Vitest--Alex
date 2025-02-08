@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "covergae": "vitest run --coverage"
+    "covergae": "vitest run --coverage",
+    "e2e": "npx cypress open"
   },
   "dependencies": {
     "@testing-library/react": "^16.2.0",
