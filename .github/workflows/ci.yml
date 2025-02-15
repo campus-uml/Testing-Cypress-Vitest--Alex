@@ -22,10 +22,7 @@ jobs:
           node-version: "22"
 
       - name: 📦 Instalar dependencias
-        run: npm install
-
-      - name: 🧪 Correr tests con coverage
-        run: npm run test -- --coverage
+        run: npm ci
   cypress-run:
     runs-on: ubuntu-latest
     needs: ci
@@ -36,6 +33,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: Run Cypress Component Tests
+        run: npx cypress run --component
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
@@ -59,3 +67,4 @@ jobs:
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
